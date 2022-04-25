@@ -1,6 +1,7 @@
+//This module is not required for the exercise, but is provided as a convenience for path visualisation.
+
 import { cellAt, getTopLeftPosition, Grid, Path, Position } from "./grid";
 
-//This function is not required for the exercise, but is provided as a convenience.
 /**
 Returns a string representation of a grid, with the steps of a path across it.
 
