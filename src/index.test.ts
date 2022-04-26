@@ -1,24 +1,24 @@
-import { parseGridMap, Path } from "./grid";
+import { Grid, parseGridStrings, Path } from "./grid";
 import { solve } from "./index";
 import { showPathOnMap } from "./pathPrinter";
 
 test("solve a 1x1 map - no steps", async function () {
-  const map: string[] = [
-    "_",
-  ];
+  const grid: Grid = parseGridStrings([
+    ".",
+  ]);
 
   const expectedPathOutput: Path = [];
-  expect(solve(map)).toStrictEqual(expectedPathOutput);
+  expect(solve(grid)).toStrictEqual(expectedPathOutput);
 });
 
 test("solve a non-trivial 5x5 map", async function () {
-  const map1: string[] = [
-    "___x_",
-    "__xxx",
-    "x_x__",
-    "_____",
-    "xxx__"
-  ];
+  const grid: Grid = parseGridStrings([
+    "...x.",
+    "..xxx",
+    "x.x..",
+    ".....",
+    "xxx.."
+  ]);
 
   const expectedPathOutput: Path = [
     ['right', { x: 1, y: 0 }],
@@ -30,23 +30,22 @@ test("solve a non-trivial 5x5 map", async function () {
     ['right', { x: 4, y: 3 }],
     ['down', { x: 4, y: 4 }]
   ];
-  expect(solve(map1)).toStrictEqual(expectedPathOutput);
+  expect(solve(grid)).toStrictEqual(expectedPathOutput);
 
-  //todo: don't print stuff out to console log for visual inspection, 
-  // rather inspect it programmatically
-  const solution = solve(map1);
+  // print for visual inspection.  not as good as automatic inspection!
+  const solution = solve(grid);
   if (solution) {
-    console.log(showPathOnMap(solution, parseGridMap(map1)));
+    console.log(showPathOnMap(solution, grid));
   }
 });
 
 test("solve a completely empty 4x4 map", async function () {
-  const map: string[] = [
-    "____",
-    "____",
-    "____",
-    "____",
-  ];
+  const grid: Grid = parseGridStrings([
+    "....",
+    "....",
+    "....",
+    "....",
+  ]);
 
   const expectedPathOutput: Path = [
     ['right', { x: 1, y: 0 }],
@@ -56,19 +55,19 @@ test("solve a completely empty 4x4 map", async function () {
     ['down', { x: 3, y: 2 }],
     ['down', { x: 3, y: 3 }]
   ];
-  expect(solve(map)).toStrictEqual(expectedPathOutput);
+  expect(solve(grid)).toStrictEqual(expectedPathOutput);
 });
 
 
 
 test("shows collisions in a bad path", () => {
-  const map1: string[] = [
-    "__x__",
-    "____x",
-    "x_xxx",
-    "_____",
-    "xxx__"
-  ];
+  const grid: Grid = parseGridStrings([
+    "..x..",
+    "....x",
+    "x.xxx",
+    ".....",
+    "xxx.."
+  ]);
 
 
   const badPath: Path = [
@@ -82,9 +81,6 @@ test("shows collisions in a bad path", () => {
     ['down', { x: 4, y: 4 }]
   ];
 
-
-  //todo: don't print stuff out to console log for visual inspection, 
-  // rather inspect it programmatically
-  console.log(showPathOnMap(badPath, parseGridMap(map1)))
-
+  // print for visual inspection.  not as good as automatic inspection!  
+  console.log(showPathOnMap(badPath, grid))
 })
