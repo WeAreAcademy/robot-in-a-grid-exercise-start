@@ -19,10 +19,10 @@ export interface Grid {
     numRows: number;
 }
 /** 
-"_" is passable terrain.
+"." is passable terrain.
 "x" is impassable terrain.  
  */
-export type CellType = "_" | "x";
+export type CellType = "." | "x";
 
 
 /** Return the contents of the grid at the given position, or null if that position is not on the grid.*/
@@ -42,7 +42,7 @@ export function getTopLeftPosition(grid: Grid): Position {
 }
 
 /** Parse a human-readable map into a structured Grid.  */
-export function parseGridMap(mapLines: string[]): Grid {
+export function parseGridStrings(mapLines: string[]): Grid {
     const rows = mapLines.map(row => row.split("") as CellType[]);
     return {
         rows,

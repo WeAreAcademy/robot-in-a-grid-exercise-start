@@ -23,7 +23,7 @@ export function showPathOnMap(path: Path, grid: Grid): string {
     let stepCounter = 1;
     for (let [, pos] of path) {
         const posStr = posToString(pos);
-        if (cellAt(pos, grid) === "_") {
+        if (cellAt(pos, grid) === ".") {
             annotatedGrid[posStr] = [stepCounter];
         } else {
             annotatedGrid[posStr] = ["!", stepCounter];
