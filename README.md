@@ -1,6 +1,12 @@
-Task:
+# Robot in a grid - Exercise
 
-In index.ts write or complete the function solve(map: string[]): Path | null.
+## Credits:
+
+This task was elaborated from the outlined interview question 8.2 "Robot in a grid" in the book [Cracking the Coding Interview, by Gayle Laakmann McDowell](https://www.crackingthecodinginterview.com/)
+
+## Brief
+
+In `index.ts` write or complete the function `solve(grid:Grid): Path | null`.
 
 Given an x, y grid of passable and impassable squares,
 plan and return a path for a robot that starts at the top left position of that grid
@@ -32,14 +38,55 @@ This will make it much easier to state, in tests, the expected route.
 
 See `grid.ts` for types representing these things, and some useful helper functions.
 
-### Parsing input:
-
-The function parseGridMap() should be used to get a Grid from the string[] input.
-
-Then you can use the function cellAt(pos, grid) to find what is at a given position in the grid.
+You can use the function `cellAt(pos, grid)` to find what is at a given position in the grid.
 
 ### tests
 
 `index.test.ts` already has a couple of tests written that expect paths to be found.
 
 You should at least add a test for an impassable map.
+
+The function `parseGridStrings()` can be used to get a Grid from `string[]` input.
+
+# Example
+
+### Example input grid
+
+(visualised)
+
+```
+...x.
+..xxx
+x.x..
+.....
+xxx..
+```
+
+### Expected output
+
+```
+[
+    ['right', { x: 1, y: 0 }],
+    ['down', { x: 1, y: 1 }],
+    ['down', { x: 1, y: 2 }],
+    ['down', { x: 1, y: 3 }],
+    ['right', { x: 2, y: 3 }],
+    ['right', { x: 3, y: 3 }],
+    ['right', { x: 4, y: 3 }],
+    ['down', { x: 4, y: 4 }]
+]
+```
+
+### Visualisation of the expected path
+
+Here's a visualisation of the grid again, with, added on the right, the expected steps the correct path should take (starting at 1).
+
+```
+...x.    S1.x.
+..xxx    .2xxx
+x.x..    x3x..
+.....    .4567
+xxx..    xxx.8
+```
+
+This is just a visualisation for your understanding - you don't have to produce such a diagram.
