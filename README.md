@@ -6,9 +6,10 @@ This task was elaborated from the outlined interview question 8.2 "Robot in a gr
 
 ## Brief
 
-In `index.ts` write or complete the function `solve(grid:Grid): Path | null`.
+In `index.ts` write or complete the function:
+`solve(grid:Grid): Path | null`.
 
-Given an x, y grid of passable and impassable squares,
+Given a 2D grid of passable and impassable squares,
 plan and return a path for a robot that starts at the top left position of that grid
 to get to the bottom right.
 
@@ -16,7 +17,7 @@ The robot can only move down or right.
 
 return a Path or return null if there is no possible path.
 
-A Path is a type described in grid.ts as an array of steps represented as
+Path is a type described in grid.ts as an array of steps represented as
 `[Direction, Position]` tuples.
 
 ```
@@ -27,10 +28,8 @@ Each of these step tuples represents the direction to step in and the resulting 
 
 Note that the starting position will never be represented in a Path. The first entry in the Path (if any) will be a step away from that starting position.
 
-The robot should have a slight preference always to move right rather than down
-assuming either move can lead to successful routes.
-
-This will make it much easier to state, in tests, the expected route.
+You should make sure your robot has a preference always to move right rather than down
+assuming either move can lead to a successful route.  (This will make it much easier to state, in tests, the expected route.)
 
 ## Supporting code
 
@@ -76,6 +75,8 @@ xxx..
     ['down', { x: 4, y: 4 }]
 ]
 ```
+
+(Notice the original position is not mentioned in this path.)
 
 ### Visualisation of the expected path
 
