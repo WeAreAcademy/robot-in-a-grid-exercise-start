@@ -6,6 +6,7 @@ import {
   Path,
   Position,
 } from "./grid";
+import { createStack } from "./stack";
 
 function areSamePosition(a: Position, b: Position): boolean {
   return a.x === b.x && a.y === b.y;
@@ -19,10 +20,12 @@ export function solve(grid: Grid): Path | null {
   const startPos = getTopLeftPosition(grid);
 
   //This stack will temporarily store positions and the path to get there, for cells we haven't fully processed yet.
-  const stack: [Position, Path][] = [[startPos, []]];
+  const stack = createStack<[Position, Path]>();
+  stack.push([startPos, []]);
+
 
   //We'll return directly out of the loop if we arrive at dest
-  while (stack.length > 0) {
+  while (!stack.isEmpty()) {
     const [pos, path] = stack.pop()!;
     if (areSamePosition(pos, targetPos)) {
       return path;
